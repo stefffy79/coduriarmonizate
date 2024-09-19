@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup cu efect de blur</title>
+    <style>
+        body {
+            margin-top: 60px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            background-image: url(https://i.ibb.co/Tqv6zFz/IMG-20240919-142317.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            font-size: 15px;
+            font-weight: bolder;
+        }
+
+        .cautare {
+            width: 55%;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background-color: #c2c2c2;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000000;
+            font-weight: bolder;
+            height: 30px;
+            font-size: 25px;
+            margin-top: 0px;
+            border: 1px solid #ffffff;
+        }
+
+        .btn {
+            width: 20%;
+            font-weight: bold;
+            font-style: italic;
+            height: 40px;
+            border: 5px solid black;
+            border-radius: 30px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+            background: -webkit-repeating-radial-gradient(circle, #dbe4f5, #464646);
+            margin-top: 25px;
+        }
+
+        .close {
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+            background: -webkit-repeating-radial-gradient(circle, #dbe4f5, #464646);
+            color: #000000;
+            border-radius: 15px;
+            padding: 5px;
+            font-weight: bolder;
+            height: 30px;
+            border: 3px solid black;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            width: 70%;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 8);
+            z-index: 9999;
+            color: #000000;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            backdrop-filter: blur(5px);
+        }
+
+        .txt {
+            font-size: 12px;
+            font-style: italic;
+            margin-bottom: 6px;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>CODURI ARMONIZATE ALE UNIUNII EUROPENE</h2><br>
+        <a class="txt">Scrie codul de la punctul 12. al permisului de conducere (fără puncte)</a><br><br>
+        <input class="cautare" type="text" id="inputCode" placeholder=""><br>
+        <button class="btn" onclick="showPopup()">Caută</button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p id="popupText"></p>
+        <button class="close" onclick="closePopup()"> Închide </button>
+    </div>
+    <img class="watermark" src="https://i.ibb.co/q9v4wW9/20230913-133046.png" alt="20230913-133046" border="0"></a>
+
+
+    <script>
+        function showPopup() {
+            var code = document.getElementById("inputCode").value;
+            var popup = document.getElementById("popup");
+            var overlay = document.getElementById("overlay");
+            var popupText = document.getElementById("popupText");
+
+            if (code === "01") {
+                popupText.textContent = "Cod 01. Corectarea şi/sau protejarea vederii";
+            } else if (code === "0101") {
+                popupText.textContent = "Cod 01.01. Ochelari";
+            } else if (code === "0102") {
+                popupText.textContent = "Cod 01.02. Lentilă (lentile) de contact";
+            } else if (code === "0105") {
+                popupText.textContent = "Cod 01.05. Acoperitoare pentru ochi";
+            } else if (code === "0106") {
+                popupText.textContent = "Cod 01.06. Ochelari sau lentile de contact";
+            } else if (code === "0107") {
+                popupText.textContent = "Cod 01.07. Dispozitive optice specifice";
+            } else if (code === "02") {
+                popupText.textContent = "Cod 02. Proteze auditive/Dispozitiv ajutător pentru comunicare";
+            } else if (code === "03") {
+                popupText.textContent = "Cod 03. Proteze/Orteze ale membrelor";
+            } else if (code === "0301") {
+                popupText.textContent = "Cod 03.01. Proteze/Orteze ale membrelor superioare";
+            } else if (code === "0302") {
+                popupText.textContent = "Cod 03.02. Proteze/Orteze ale membrelor inferioare";
+            } else if (code === "10") {
+                popupText.textContent = "Cod 10. Transmisie modificată";
+            } else if (code === "1002") {
+                popupText.textContent = "Cod 10.02. Selectarea automată a treptei de viteză";
+            } else if (code === "1004") {
+                popupText.textContent = "Cod 10.04. Levierul schimbătorului de viteze adaptat";
+            } else if (code === "15") {
+                popupText.textContent = "Cod 15. Ambreiaj adaptat";
+            } else if (code === "1501") {
+                popupText.textContent = "Cod 15.01. Pedală de ambreiaj adaptată";
+            } else if (code === "1502") {
+                popupText.textContent = "Cod 15.02. Ambreiaj manual";
+            } else if (code === "1503") {
+                popupText.textContent = "Cod 15.03. Ambreiaj automat";
+            } else if (code === "1504") {
+                popupText.textContent = "Cod 15.04. Măsuri pentru a preveni obstrucţionarea sau acţionarea pedalei de ambreiaj";
+            } else if (code === "20") {
+                popupText.textContent = "Cod 20. Sistem de frânare modificat";
+            } else if (code === "2001") {
+                popupText.textContent = "Cod 20.01. Pedala de frână adaptată";
+            } else if (code === "2003") {
+                popupText.textContent = "Cod 20.03. Pedala de frână adaptată pentru piciorul stâng";
+            } else if (code === "2004") {
+                popupText.textContent = "Cod 20.04. Pedala de frână prin talpă";
+            } else if (code === "2005") {
+                popupText.textContent = "Cod 20.05. Pedala de frână înclinată";
+            } else if (code === "2006") {
+                popupText.textContent = "Cod 20.06. Frână de serviciu manuală (adaptată)";
+            } else if (code === "2007") {
+                popupText.textContent = "Cod 20.07. Utilizare maximă a frânei de serviciu consolidate cu o forţă de ..... N (*) [de exemplu«20.07(300N)»] Notă: (*) Această forţă arată capacitatea conducătorului auto de acţionare a sistemului.";
+            } else if (code === "2009") {
+                popupText.textContent = "Cod 20.09. Frână de parcare adaptată";
+            } else if (code === "2012") {
+                popupText.textContent = "Cod 20.12. Separare înainte de pedala de frână/cu pedala la podea/cu pedala de frână detaşată";
+            } else if (code === "2013") {
+                popupText.textContent = "Cod 20.13. Frână acţionată cu genunchiul";
+            } else if (code === "2014") {
+                popupText.textContent = "Cod 20.14. Frână de serviciu acţionată electronic";
+            } else if (code === "25") {
+                popupText.textContent = "Cod 25. Sisteme de accelerare modificate";
+            } else if (code === "2501") {
+                popupText.textContent = "Cod 25.01. Pedală de acceleraţie adaptată";
+            } else if (code === "2503") {
+                popupText.textContent = "Cod 25.03. Pedală de acceleraţie înclinată";
+            } else if (code === "2504") {
+                popupText.textContent = "Cod 25.04. Pedală de acceleraţie acţionată manual";
+            } else if (code === "2505") {
+                popupText.textContent = "Cod 25.05. Pedală de acceleraţie acţionată cu genunchiul";
+            } else if (code === "2506") {
+                popupText.textContent = "Cod 25.06. Servoacceleraţii (electronice, pneumatice etc.)";
+            } else if (code === "2508") {
+                popupText.textContent = "Cod 25.08. Pedală de acceleraţie plasată în stânga";
+            } else if (code === "2509") {
+                popupText.textContent = "Cod 25.09. Separare înainte de pedala de acceleraţie/cu pedala la podea/cu pedala de acceleraţie detaşată";
+            } else if (code === "31") {
+                popupText.textContent = "Cod 31. Adaptări şi protecţii pedale";
+            } else if (code === "3101") {
+                popupText.textContent = "Cod 31.01. Set suplimentar de pedale paralele";
+            } else if (code === "3102") {
+                popupText.textContent = "Cod 31.02. Pedale la (sau aproape la) acelaşi nivel";
+            } else if (code === "3103") {
+                popupText.textContent = "Cod 31.03. Protecţie la obstrucţionarea sau acţionarea pedalelor de acceleraţie şi frână atunci când acestea nu sunt acţionate cu piciorul";
+            } else if (code === "3104") {
+                popupText.textContent = "Cod 31.04. Podea înălţată";
+            } else if (code === "32") {
+                popupText.textContent = "Cod 32. Sisteme de acceleraţie şi frână de serviciu combinate";
+            } else if (code === "3201") {
+                popupText.textContent = "Cod 32.01. Acceleraţie şi frână de serviciu ca sistem combinat acţionat cu un braţ";
+            } else if (code === "3202") {
+                popupText.textContent = "Cod 32.02. Acceleraţie şi frână de serviciu ca sistem servo combinat";
+            } else if (code === "33") {
+                popupText.textContent = "Cod 33. Sisteme de acceleraţie, frână de serviciu şi direcţie combinate";
+            } else if (code === "3301") {
+                popupText.textContent = "Cod 33.01. Acceleraţie, frână de serviciu şi direcţie ca sistem combinat servo, acţionat cu o mână";
+            } else if (code === "3302") {
+                popupText.textContent = "Cod 33.02. Acceleraţie, frână de serviciu şi direcţie ca sistem combinat servo, acţionat cu două mâini";
+            } else if (code === "35") {
+                popupText.textContent = "Cod 35. Dispozitive de comandă adaptate (comutatoare pentru faruri, ştergător şi spălător de parbriz, claxon, semnalizatoare etc.)";
+            } else if (code === "3502") {
+                popupText.textContent = "Cod 35.02. Dispozitive de comandă care pot fi acţionate fără eliberarea volanului";
+            } else if (code === "3503") {
+                popupText.textContent = "Cod 35.03. Dispozitive de comandă care pot fi acţionate cu mâna stângă fără eliberarea volanului";
+            } else if (code === "3504") {
+                popupText.textContent = "Cod 35.04. Dispozitive de comandă care pot fi acţionate cu mâna dreaptă fără eliberarea volanului";
+            } else if (code === "3505") {
+                popupText.textContent = "Cod 35.05. Dispozitive de comandă care pot fi acţionate fără eliberarea volanului şi a comenzilor de acceleraţie sau de frână combinate";
+            } else if (code === "40") {
+                popupText.textContent = "Cod 40. Direcţie modificată";
+            } else if (code === "4001") {
+                popupText.textContent = "Cod 40.01. Utilizare maximă a direcţiei cu o forţă de ..... N (*) [de exemplu «40.01(140N)»] Notă: (*) Această forţă arată capacitatea conducătorului auto de acţionare a sistemului.";
+            } else if (code === "4005") {
+                popupText.textContent = "Cod 40.05. Volan ajustat (volan mai gros/mai subţire, volan cu diametru redus etc.)";
+            } else if (code === "4006") {
+                popupText.textContent = "Cod 40.06. Volan cu basculare";
+            } else if (code === "4009") {
+                popupText.textContent = "Cod 40.09. Acţionare cu piciorul";
+            } else if (code === "4011") {
+                popupText.textContent = "Cod 40.11. Mâner la volan";
+            } else if (code === "4014") {
+                popupText.textContent = "Cod 40.14. Sistem de direcţie adaptat alternativ acţionat cu un braţ";
+            } else if (code === "4015") {
+                popupText.textContent = "Cod 40.15. Sistem de direcţie adaptat alternativ acţionat cu două braţe";
+            } else if (code === "42") {
+                popupText.textContent = "Cod 42. Oglindă (oglinzi) retrovizoare modificată (modificate)";
+            } else if (code === "4201") {
+                popupText.textContent = "Cod 42.01. Oglindă retrovizoare adaptată";
+            } else if (code === "4203") {
+                popupText.textContent = "Cod 42.03. Oglindă retrovizoare interioară suplimentară pentru observarea traficului";
+            } else if (code === "4205") {
+                popupText.textContent = "Cod 42.05. Oglindă retrovizoare pentru unghiul mort";
+            } else if (code === "43") {
+                popupText.textContent = "Cod 43. Poziţia scaunului pentru conducătorul auto";
+            } else if (code === "4301") {
+                popupText.textContent = "Cod 43.01. Scaun pentru conducător cu înălţime adecvată pentru vizibilitate şi distanţă normală faţă de volan şi pedale";
+            } else if (code === "4302") {
+                popupText.textContent = "Cod 43.02. Scaun pentru conducător adaptat la forma corpului";
+            } else if (code === "4303") {
+                popupText.textContent = "Cod 43.03. Scaunul conducătorului auto cu suport lateral pentru stabilitate bună";
+            } else if (code === "4304") {
+                popupText.textContent = "Cod 43.04. Scaunul conducătorului auto cu rezemătoare pentru braţ";
+            } else if (code === "4306") {
+                popupText.textContent = "Cod 43.06. Centură de siguranţă adaptată";
+            } else if (code === "4307") {
+                popupText.textContent = "Cod 43.07. Centură de siguranţă tip ham";
+            } else if (code === "44") {
+                popupText.textContent = "Cod 44. Modificări ale motocicletelor (folosirea subcodurilor este obligatorie)";
+            } else if (code === "4401") {
+                popupText.textContent = "Cod 44.01. Frână cu comandă unică";
+            } else if (code === "4402") {
+                popupText.textContent = "Cod 44.02. Frână de mână (adaptată) (la roata din faţă)";
+            } else if (code === "4403") {
+                popupText.textContent = "Cod 44.03. Frână de mână (adaptată) (la roata din spate)";
+            } else if (code === "4404") {
+                popupText.textContent = "Cod 44.04. Manetă de acceleraţie (adaptată)";
+            } else if (code === "4408") {
+                popupText.textContent = "Cod 44.08. Înălţimea scaunului permite conducătorului auto, în poziţia şezând, să aibă în acelaşi timp ambele picioare pe suprafaţa drumului";
+            } else if (code === "4409") {
+                popupText.textContent = "Cod 44.09. Forţa maximă cu care se poate aplica frâna pe roata din faţă de ... N (*) [de exemplu «44.09(140N)»] Notă: (*) Această forţă arată capacitatea conducătorului auto de acţionare a sistemului.";
+            } else if (code === "4410") {
+                popupText.textContent = "Cod 44.10. Forţa maximă cu care se poate aplica frâna pe roata din spate de ... N (*) [de exemplu «44.10(240N)»] Notă: (*) Această forţă arată capacitatea conducătorului auto de acţionare a sistemului.";
+            } else if (code === "4411") {
+                popupText.textContent = "Cod 44.11. Rezemătoare pentru picioare adaptată";
+            } else if (code === "4412") {
+                popupText.textContent = "Cod 44.12. Manetă adaptată";
+            } else if (code === "45") {
+                popupText.textContent = "Cod 45. Numai motocicletă cu ataş";
+            } else if (code === "46") {
+                popupText.textContent = "Cod 46. Numai tricicluri";
+            } else if (code === "47") {
+                popupText.textContent = "Cod 47. Limitat la vehiculele cu mai mult de două roţi care nu necesită poziţia de echilibru a conducătorului auto la pornire, oprire şi stat în picioare";
+            } else if (code === "50") {
+                popupText.textContent = "Cod 50. Limitat la un anumit vehicul/un anumit număr de şasiu (numărul de identificare al vehiculului, NIV)";
+            } else if (code === "61") {
+                popupText.textContent = "Cod 61. Limitare la călătorii în timpul zilei (de exemplu: o oră după răsăritul soarelui şi o oră înainte de apusul soarelui)";
+            } else if (code === "62") {
+                popupText.textContent = "Cod 62. Limitare la călătorii pe o rază de ... km de la locul de domiciliu/reşedinţă al titularului sau doar în interiorul unui oraş/în perimetrul unei zone/regiuni";
+            } else if (code === "63") {
+                popupText.textContent = "Cod 63. Conducere fără pasageri";
+            } else if (code === "64") {
+                popupText.textContent = "Cod 64. Limitare la călătorii cu o viteză de maximum ... km/h";
+            } else if (code === "65") {
+                popupText.textContent = "Cod 65. Conducere autorizată doar în prezenţa unui însoţitor care posedă permis de conducere de categorie cel puţin echivalentă";
+            } else if (code === "66") {
+                popupText.textContent = "Cod 66. Fără remorcă";
+            } else if (code === "67") {
+                popupText.textContent = "Cod 67. Nu este permisă conducerea pe autostrăzi";
+            } else if (code === "68") {
+                popupText.textContent = "Cod 68. Nu este permis consumul de băuturi alcoolice";
+            } else if (code === "69") {
+                popupText.textContent = "Cod 69. Restricţionat la conducerea vehiculelor echipate cu dispozitiv antidemaraj la sesizarea prezenţei alcoolului în aerul expirat al conducătorului auto conform normelor EN 50436.Indicarea unei date de expirare a restricţiei este opţională [de exemplu «69» sau «69 (01.01.2016)»]";
+            } else if (code === "70") {
+                popupText.textContent = "Cod 70. Schimbarea permisului nr. ..., eliberat de ... (semn distinctiv UE/ONU în cazul unei ţări terţe, de exemplu: «70.0123456789.NL»)";
+            } else if (code === "71") {
+                popupText.textContent = "Cod 71. Duplicatul permisului nr. ... (semn distinctiv UE/ONU în cazul unei ţări terţe, de exemplu: «71.987654321.HR»)";
+            } else if (code === "73") {
+                popupText.textContent = "Cod 73. Limitat la vehiculele din categoria B tip cvadriciclu cu motor (B1)";
+            } else if (code === "78") {
+                popupText.textContent = "Cod 78. Limitat la vehiculele cu schimbător de viteze automat";
+            } else if (code === "79") {
+                popupText.textContent = "Cod 79. (...) Limitat la vehiculele care respectă specificaţiile indicate în paranteze, în vederea aplicării articolului 13 din Directiva 2006/126/CE a Parlamentului European şi a Consiliului din 20 decembrie 2006 privind permisele de conducere (reformată), cu modificările şi completările ulterioare";
+            } else if (code === "7901") {
+                popupText.textContent = "Cod 79.01. Limitat la vehicule cu două roţi, cu sau fără ataş";
+            } else if (code === "7902") {
+                popupText.textContent = "Cod 79.02. Limitat la vehiculele din categoria AM cu trei roţi sau de tip cvadriciclu uşor";
+            } else if (code === "7903") {
+                popupText.textContent = "Cod 79.03. Limitat la tricicluri";
+            } else if (code === "7904") {
+                popupText.textContent = "Cod 79.04. Limitat la tricicluri combinate cu o remorcă având o masă maximă autorizată care nu depăşeşte 750 kg";
+            } else if (code === "7905") {
+                popupText.textContent = "Cod 79.05. Motocicletă din categoria A1 cu un raport putere/ masă de peste 0,1 kW/kg";
+            } else if (code === "7906") {
+                popupText.textContent = "Cod 79.06. Vehicul din categoria BE unde masa maximă autorizată a remorcii depăşeşte 3.500 kg";
+            } else if (code === "80") {
+                popupText.textContent = "Cod 80. Limitat la titularii unui permis de conducere pentru un vehicul din categoria A de tip triciclu cu motor care nu au împlinit 24 de ani";
+            } else if (code === "81") {
+                popupText.textContent = "Cod 81. Limitat la titularii unui permis de conducere pentru un vehicul din categoria A de tip motocicletă cu două roţi care nu au împlinit 21 de ani";
+            } else if (code === "95") {
+                popupText.textContent = "Cod 95. Conducătorul auto deţinător de certificat de competenţă profesională (CPC) care îndeplineşte obligaţia de aptitudine profesională prevăzută în Directiva 2003/59/CE a Parlamentului European şi a Consiliului din 15 iulie 2003 privind calificarea iniţială şi formarea periodică a conducătorilor auto ai anumitor vehicule rutiere destinate transportului de mărfuri sau de pasageri, de modificare a Regulamentului (CEE) nr. 3.820/85 al Consiliului şi a Directivei 91/439/CEE a Consiliului şi de abrogare a Directivei 76/914/CEE a Consiliului până la ... [de exemplu «95(01.01.12)»]";
+            } else if (code === "96") {
+                popupText.textContent = "Cod 96. Vehicule din categoria B combinate cu o remorcă cu o masă maximă autorizată de peste 750 kg, unde masa maximă autorizată a unei astfel de combinaţii depăşeşte 3.500 kg, dar nu este mai mare de 4.250 kg";
+            } else if (code === "97") {
+                popupText.textContent = "Cod 97. Nu are dreptul de a conduce un vehicul din categoria C1 care intră în domeniul de aplicare a Regulamentului (UE) nr. 165/2014 al Parlamentului European şi al Consiliului din 4 februarie 2014 privind tahografele în transportul rutier, de abrogare a Regulamentului (CEE) nr. 3.821/85 al Consiliului privind aparatura de înregistrare în transportul rutier şi de modificare a Regulamentului (CE) nr. 561/2006 al Parlamentului European şi al Consiliului privind armonizarea anumitor dispoziţii ale legislaţiei sociale în domeniul transporturilor rutiere (JOUE, seria L, nr. 60, 28.04.2014)";
+            } else {
+                popupText.textContent = "Codul introdus nu are un text prestabilit.";
+            }
+
+            popup.style.display = "block";
+            overlay.style.display = "block";
+        }
+
+        function closePopup() {
+            var popup = document.getElementById("popup");
+            var overlay = document.getElementById("overlay");
+
+            popup.style.display = "none";
+            overlay.style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>
